@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <title>Login</title>
+  </head>
+  <body>
+    <section class="form-container">
+      <h2>Login To Your Account</h2>
+      <form id="form-submit">
+        <section class="form-input">
+          <label for="email">Email Address</label>
+          <input type="text" id="email"
+          placeholder="Enter Email Address" />
+        </section>
+        <section class="form-input">
+          <label for="password">Password</label>
+          <input type="password" id="password"
+          placeholder="Enter password" />
+          <span id="fa-eye" class="fa-regular fa-eye"></span>
+          <span id="fa-eye-slash" class="fa-regular fa-eye-slash"></span>
+        </section>
+         <section class="account">
+          <a href="./index.html">Just Join Us Here? <span>Sign up</span></a>
+        </section>
+        <section class="hero-btn">
+          <button type="submit">Login</button>
+        </section>
+      </form>
+    </section>
+
+    <script src="login.js"></script>
+    <script src="SweetAlert.js"></script>
+  </body>
+</html>
