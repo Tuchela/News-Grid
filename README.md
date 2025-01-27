@@ -1,4 +1,4 @@
-# DMS Application
+# NEWS GRID Application
 
 ## Tools Used
 
@@ -9,7 +9,7 @@
 
 ### DEMO LINK
 
-[NEWS-GRID-WEB-APPLICATION](example.com)
+[NEWS-GRID-WEB-APPLICATION](https://tuchela.github.io/News-Grid/)
 
 ### Author
 - Tuchela
