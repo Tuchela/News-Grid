@@ -199,6 +199,10 @@ h6 {
 .page-container > *:first-child {
   grid-row: 1 / span 3;
 }
+
+.account a span {
+  cursor: pointer;
+}
 /* utility end */
 
 /* Navigation */
