@@ -184,8 +184,8 @@ h6 {
   color: var(--primary-color) !important;
 }
 
-.list li:last-child{
-  font-size: .65rem;
+.list li:last-child {
+  font-size: 0.65rem;
   cursor: pointer;
 }
 
@@ -411,6 +411,10 @@ label {
 
 .account {
   text-align: center;
+}
+.account a {
+  display: flex;
+  flex-direction: column;
 }
 
 .account span {
