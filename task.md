@@ -14,3 +14,5 @@ specifying the Minimum of 8 characters is required for password
 - create a function to handle user login
 - get users credentials from the localstorage(email and password)
 - create a function to handle user logout. Clear the localstorage and redirect the user to the login page
+
+<!-- izojiygicwwshbqt -->
