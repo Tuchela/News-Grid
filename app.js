@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectToDatabase } from "./databaseConnection/connection.js";
 import UserRoute from "./routes/user.route.js";
 import morgan from "morgan";
+import cors from "cors";
 
 dotenv.config();
 
@@ -16,7 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 const PORT = process.env.PORT || 2025;
-
+// cors
+app.use(cors())
 // connection
 connectToDatabase();
 app.get("/", (req, res) => {
