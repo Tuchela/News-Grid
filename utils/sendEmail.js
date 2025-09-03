@@ -1,30 +1,37 @@
-import nodemailer from "nodemailer";
+// import nodemailer from "nodemailer";
 
-export const sendEmail = async ({ to, subject, text, html }) => {
-  try {
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
-      secure: process.env.SMTP_SECURE === "true", // true = 465, false = other ports
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
+// export const sendEmail = async ({ to, subject, text, html }) => {
+//   try {
+//     const transporter = nodemailer.createTransport({
+//       host: process.env.SMTP_HOST,
+//       port: process.env.SMTP_PORT,
+//       secure: process.env.SMTP_SECURE === "true", // true = 465, false = other ports
+//       auth: {
+//         user: process.env.SMTP_USER,
+//         pass: process.env.SMTP_PASS,
+//       },
+//     });
 
-    const mailOptions = {
-      from: `"My App" <${process.env.SMTP_USER}>`, // ✅ needs quotes + template string
-      to,
-      subject,
-      text,
-      html,
-    };
+//     const mailOptions = {
+//       from: `"My App" <${process.env.SMTP_USER}>`, // ✅ needs quotes + template string
+//       to,
+//       subject,
+//       text,
+//       html,
+//     };
 
-    const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent:", info.messageId);
-    return info;
-  } catch (err) {
-    console.error("Error sending email:", err);
-    throw err;
-  }
-};
+//     const info = await transporter.sendMail(mailOptions);
+//     console.log("Email sent:", info.messageId);
+//     return info;
+//   } catch (err) {
+//     console.error("Error sending email:", err);
+//     throw err;
+//   }
+// };
+// console.log("SMTP Debug:", {
+//   user: process.env.SMTP_USER,
+//   pass: process.env.SMTP_PASS ? "LOADED" : "MISSING",
+//   host: process.env.SMTP_HOST,
+//   port: process.env.SMTP_PORT,
+//   secure: process.env.SMTP_SECURE,
+// });
