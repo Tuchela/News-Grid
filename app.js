@@ -5,7 +5,7 @@ import UserRoute from "./routes/user.route.js";
 import morgan from "morgan";
 import cors from "cors";
 
-dotenv.config()
+dotenv.config();
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use(morgan("dev"));
 
 const PORT = process.env.PORT || 2025;
 // cors
-app.use(cors())
+app.use(cors());
 // connection
 connectToDatabase();
 app.get("/", (req, res) => {
@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 });
 
 // users route
-app.use("/api/v1/user", UserRoute);
+app.use("/api/v1/users", UserRoute);
 
 app.listen(PORT, () => {
   console.log(`sever is running on port ${PORT}`);

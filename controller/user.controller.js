@@ -90,6 +90,25 @@ export const loginUser = async (req, res) => {
   }
 };
 
+// get all users
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    if (users.length === 0) {
+      return res.status(404).json({
+        message: "No user found",
+      });
+    }
+    return res.status(200).json({
+      message: "Users retrieved successfully",
+      users,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+    });
+  }
+};
 // forgotpassword | otp email verification | otp sms
 
 export const forgotPassword = async (req, res) => {
@@ -99,9 +118,12 @@ export const forgotPassword = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     // Generate OTP
-    const otp = crypto.randomInt(100000 + Math.random() * 900000).toString(); // 6 digits
+    // 2. Generate OTP (6-digit)
+    const otp = crypto.randomInt(100000, 999999).toString();
+
+    // 3. Set OTP expiration (10 minutes)
     user.otp = otp;
-    user.otpExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
+    user.otpExpires = Date.now() + 10 * 60 * 1000;
     await user.save();
 
     // Send OTP via email (configure transporter)
@@ -116,7 +138,7 @@ export const forgotPassword = async (req, res) => {
       },
     });
 
-    await transporter.sendMail({
+    await transporter.sendEmail({
       from: process.env.SMTP_USER,
       to: email,
       subject: "Password Reset OTP",
@@ -154,25 +176,6 @@ export const resetPassword = async (req, res) => {
   }
 };
 
-// get all users
-export const getAllUsers = async (req, res) => {
-  try {
-    const users = await User.find();
-    if (users.length === 0) {
-      return res.status(404).json({
-        message: "No user found",
-      });
-    }
-    return res.status(200).json({
-      message: "Users retrieved successfully",
-      users,
-    });
-  } catch (error) {
-    res.status(500).json({
-      error: error.message,
-    });
-  }
-};
 
 // get single user
 export const getSingleUser = async (req, res) => {
