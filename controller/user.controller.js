@@ -117,7 +117,7 @@ export const forgotPassword = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     // Generate OTP
-    const otp = crypto.randomInt(100000, 100000).toString(); // 6 digits
+    const otp = crypto.randomInt(10000, 999999).toString(); // 6 digits
     user.otp = otp;
     user.otpExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
     await user.save();
