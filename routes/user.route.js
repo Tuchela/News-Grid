@@ -1,13 +1,13 @@
 import express from "express";
 import {
-  resetPassword,
-  getSingleUser,
-  updateUser,
   deleteUser,
+  forgotPassword,
   getAllUsers,
+  getSingleUser,
   loginUser,
   registerUser,
-  forgotPassword,
+  resetPassword,
+  updateUser,
 } from "../controller/user.controller.js";
 
 // initialize router
@@ -25,11 +25,11 @@ router.post("/forgot-password", forgotPassword);
 // reset password
 router.post("/reset-password", resetPassword);
 // single user endpoint
-router.get("/user/:id", getSingleUser);
+router.get("/:id", getSingleUser);
 // update user endpoint
-router.put("/user/:id", updateUser);
+router.put("/:id", updateUser);
 // delete user endpoint
-router.delete("/user/:id", deleteUser);
+router.delete("/:id", deleteUser);
 
 
 export default router;

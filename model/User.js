@@ -25,11 +25,6 @@ const userSchema = mongoose.Schema(
       max: 25,
       required: true,
     },
-    role: {
-      type: String,
-      enum: ["user", "admin"],
-      default: "user",
-    },
     otp: {
       type: String,
       default: null,
@@ -44,5 +39,5 @@ const userSchema = mongoose.Schema(
   }
 );
 
-const user = mongoose.model("user", userSchema);
-export default user;
+const User = mongoose.model("User", userSchema);
+export default User;

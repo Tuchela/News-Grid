@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 });
 
 // users route
-app.use("/api/v1/users", UserRoute);
+app.use("/api/v1/user", UserRoute);
 
 app.listen(PORT, () => {
   console.log(`sever is running on port ${PORT}`);

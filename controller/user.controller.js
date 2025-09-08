@@ -8,7 +8,7 @@ import nodemailer from "nodemailer";
 
 export const registerUser = async (req, res) => {
   try {
-    const { firstname, lastname, email, password, role, address } = req.body;
+    const { firstname, lastname, email, password } = req.body;
 
     //salting / salt round
     const salt = await bcrypt.genSalt(12);
@@ -21,9 +21,8 @@ export const registerUser = async (req, res) => {
       lastname,
       email,
       password: hashPassword,
-      role,
-      address,
     });
+
     // find if user already exist
     const user = await User.findOne({ email });
     if (user) {
@@ -118,12 +117,9 @@ export const forgotPassword = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     // Generate OTP
-    // 2. Generate OTP (6-digit)
-    const otp = crypto.randomInt(100000, 999999).toString();
-
-    // 3. Set OTP expiration (10 minutes)
+    const otp = crypto.randomInt(100000, 100000).toString(); // 6 digits
     user.otp = otp;
-    user.otpExpires = Date.now() + 10 * 60 * 1000;
+    user.otpExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
     await user.save();
 
     // Send OTP via email (configure transporter)
@@ -133,13 +129,13 @@ export const forgotPassword = async (req, res) => {
       port: process.env.SMTP_PORT,
       secure: process.env.SMTP_SECURE,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
-    await transporter.sendEmail({
-      from: process.env.SMTP_USER,
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
       to: email,
       subject: "Password Reset OTP",
       text: `Your OTP is ${otp}. It will expire in 10 minutes.`,
@@ -175,7 +171,6 @@ export const resetPassword = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 
 // get single user
 export const getSingleUser = async (req, res) => {
@@ -226,8 +221,6 @@ export const updateUser = async (req, res) => {
         lastname: lastname || user.lastname,
         email: email || user.email,
         password: hashedPassword || user.password,
-        role: role || user.role,
-        address: address || user.address,
       },
       { new: true }
     );
