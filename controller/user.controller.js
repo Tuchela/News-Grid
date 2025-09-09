@@ -78,7 +78,7 @@ export const loginUser = async (req, res) => {
     // omit password
     const { password, ...otherUserData } = user._doc;
     return res.status(200).json({
-      message: "User successfully logged in",
+      message: `"${User.firstname} successfully logged in"`,
       otherUserData,
       token,
     });
