@@ -137,7 +137,6 @@ export const forgotPassword = async (req, res) => {
       subject: "Password Reset OTP",
       text: `Your OTP is ${otp}. It will expire in 10 minutes.`,
     });
-
     res.status(200).json({ message: "OTP sent to email" });
   } catch (error) {
     res.status(500).json({ error: error.message });
