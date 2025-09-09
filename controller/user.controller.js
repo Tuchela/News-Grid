@@ -78,7 +78,7 @@ export const loginUser = async (req, res) => {
     // omit password
     const { password, ...otherUserData } = user._doc;
     return res.status(200).json({
-      message: `"${user.firstname} successfully logged in"`,
+      message: `${user.firstname} successfully logged in`,
       otherUserData,
       token,
     });
@@ -129,13 +129,13 @@ export const forgotPassword = async (req, res) => {
       // port: process.env.SMTP_PORT,
       // secure: process.env.SMTP_SECURE,
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     });
 
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: process.env.SMTP_USER,
       to: email,
       subject: "Password Reset OTP",
       text: `Your OTP is ${otp}. It will expire in 10 minutes.`,
