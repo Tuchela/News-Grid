@@ -34,6 +34,11 @@ export const registerUser = async (req, res) => {
       createdUser,
     });
   } catch (error) {
+    if (error.code === 11000) {
+      return res.status(400).json({
+        error: "Emailalready exist. Please use another email",
+      });
+    }
     return res.status(500).json({
       error: error.message,
     });
